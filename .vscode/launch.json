@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "args": [
+                "develop"
+            ],
+            "name": "Gulp develop",
+            "program": "${workspaceFolder}/node_modules/gulp/bin/gulp.js",
+            "request": "launch",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node"
+        },
+        {
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "name": "nodemon",

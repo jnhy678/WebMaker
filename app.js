@@ -8,9 +8,9 @@ const session = require('express-session');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const pageRouter = require('./routes/index');
+const pageRouter = require('./routes/index.js');
 const apiRouter = require('./routes/api');
-const Server = require('./src/config');
+const Server = require('./src/index');
 
 global.moment = require('moment');
 moment.locale('ko');
@@ -38,9 +38,14 @@ app.set('view engine', 'ejs');
 app.use('/',pageRouter);
 app.use('/api',apiRouter);
 
+global.LIVERELOAD = 'http://localhost:35729/livereload.js'
+
 // 서버 시작
-const port = 1567;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+
+app.set('port', process.env.PORT || 1567);
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
 });
+
+module.exports = app;
     
