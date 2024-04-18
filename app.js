@@ -9,6 +9,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const dev = process.env.NODE_ENV !== 'production';
+const pageRouter = require('./routes/index.js');
+const apiRouter = require('./routes/api');
+const Server = require('./src/index');
 
 global.Server = require('./src/index.js');
 global.moment = require('moment');
@@ -47,9 +50,14 @@ app.set('view engine', 'ejs');
 // app.use('/',pageRouter); // 페이지는 아마 쓸일 없겠지
 app.use('/api',apiRouter);
 
+global.LIVERELOAD = 'http://localhost:35729/livereload.js'
+
 // 서버 시작
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
+
 });
+
+module.exports = app;
     
